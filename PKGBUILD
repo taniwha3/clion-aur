@@ -1,6 +1,7 @@
 # Maintainer: Michael Hansen <zrax0111 gmail com>
 # Contributor: Raphaël Doursenaud <rdoursenaud@gpcsolutions.fr>
 # Contributor: Jesse Jaara <gmail.com: jesse.jaara>
+# Contributor: Tani Aura https://github.com/taniwha3/clion-aur
 
 # Uncomment if you want to disable compressing the package to save some time.
 #PKGEXT=.pkg.tar
@@ -9,12 +10,12 @@ pkgbase=clion
 pkgname=(clion clion-jre clion-cmake clion-gdb clion-lldb)
 _pkgname=clion
 _dlname=CLion
-pkgver=2022.2.3
+pkgver=2022.2.4
 pkgrel=1
 epoch=1
-jbr_ver=17.0.3
-jbr_build=aarch64-b469
-jbr_minor=37
+jbr_ver=17.0.4.1
+jbr_build=aarch64-b646
+jbr_minor=8
 pkgdesc="C/C++ IDE. Free 30-day trial."
 arch=('x86_64' 'aarch64')
 options=(!strip)
@@ -24,9 +25,9 @@ makedepends=('rsync')
 source=("https://download.jetbrains.com/cpp/${_dlname}-${pkgver}.tar.gz"
         "jetbrains-${pkgbase}.desktop")
 source_aarch64=("https://cache-redirector.jetbrains.com/intellij-jbr/jbr-${jbr_ver}-linux-${jbr_build}.${jbr_minor}.tar.gz" "https://github.com/JetBrains/intellij-community/raw/master/bin/linux/aarch64/fsnotifier")
-sha256sums=('e0338107115231c4b354870dfcf537ba6ad1741a0d310e4e50c48dfc24ff9cce'
+sha256sums=('d88794c698d7bf4d970ba102b85166d5f8c3cb08c4ed5b4cbc150bb505320fab'
             '13c9e7c7f6ef57ee573d133bf30a599390a99087a1f578caea62020e0f742587')
-sha256sums_aarch64=('737242bdd6795a14897ff97bb0bb8d99e7a1a5878a6d2f942712147b20312320'
+sha256sums_aarch64=('4665ae3f2f6da44493d421f1e943e220de38a43a73a4f3a479b64de0d6aad9d2'
                     'eb3c61973d34f051dcd3a9ae628a6ee37cd2b24a1394673bb28421a6f39dae29')
 
 noextract=("${_dlname}-${pkgver}.tar.gz")
@@ -44,7 +45,7 @@ build() {
         cp -a fsnotifier opt/${pkgbase}/bin/fsnotifier
         chmod +x opt/${pkgbase}/bin/fsnotifier
         rm -r opt/${pkgbase}/jbr
-        cp -a jbr-${jbr_ver}-${jbr_build} opt/${pkgbase}/jbr
+        cp -a jbr-${jbr_ver}-linux-${jbr_build}.${jbr_minor} opt/${pkgbase}/jbr
         cd ../
     fi
 }
